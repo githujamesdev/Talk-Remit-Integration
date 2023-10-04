@@ -40,7 +40,7 @@ public class AirlineList {
             flightRequestObject.addProperty("ip_address", credentials.get("ip_address").getAsString());
             loggger.info("AIRLINE LIST REQUEST |  URL " + url + "  REQ " + flightRequestObject);
             responseObject = utility.airportRequest(flightRequestObject, url);
-            loggger.info("AIRLINE LIST RESPONSE |  URL " + url + "  REQ " + responseObject);
+            //loggger.info("AIRLINE LIST RESPONSE |  URL " + url + "  REQ " + responseObject);
 
         } catch (IOException | ParseException ex) {
             loggger.info("Exception  |  " + ex.getMessage());

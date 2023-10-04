@@ -4,6 +4,8 @@
  */
 package com.flightlogic.co.ke.main.controllers;
 
+import com.flightlogic.co.ke.main.entities.Nation;
+import com.flightlogic.co.ke.main.repository.NationRepository;
 import com.flightlogic.co.ke.main.services.AirlineList;
 import com.flightlogic.co.ke.main.services.AirportList;
 import com.flightlogic.co.ke.main.services.FareRules;
@@ -27,6 +29,7 @@ import com.flightlogic.co.ke.main.utilities.Httpcall;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonSyntaxException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
@@ -43,6 +46,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class FlightLogicController {
 
     private final Logger loggger = LogManager.getLogger(FlightLogicController.class);
+
+    private final NationRepository nationRepository;
+
     public String httpURL = "";
     public String brandId = "";
     public String pricePlan = "";
@@ -102,10 +108,15 @@ public class FlightLogicController {
 
     @Value("${flight.airline_list}")
     String airline_list;
+    @Value("${flight.post_ticket_status}")
+    String post_ticket_status;
+
+    @Value("${flight.void_quote}")
+    String void_quote;
 
     @Autowired
-    public FlightLogicController() {
-
+    public FlightLogicController(NationRepository nationRepository) {
+        this.nationRepository = nationRepository;
     }
 
     @GetMapping("hello")
@@ -163,12 +174,31 @@ public class FlightLogicController {
                     airlines = airline.airlineList(request, airline_list, credentials);
                     response.add("airlines", airlines);
                     break;
+                case "PostTicketStatus":
+                    response = trip.postTicketStatus(request, post_ticket_status, credentials);
+                    break;
+                case "VoidQuote":
+                    response = trip.postTicketStatus(request, post_ticket_status, credentials);
+                    break;
+                case "NationalCodes":
+                    // Retrieve airport data from the database
+                    List<Nation> nationData = nationRepository.findAll();
+                    JsonArray nationList = new JsonArray();
+                    for (Nation nation : nationData) {
+                        JsonObject airportJson = new JsonObject();
+                        airportJson.addProperty("nationcode", nation.getNationCode());
+                        airportJson.addProperty("nationname", nation.getNationName());
+                        nationList.add(airportJson);
+                    }
+
+                    response.add("nations", nationList);
+                    break;
             }
 
         } catch (JsonSyntaxException ex) {
             loggger.error("Exception  |  " + ex.getMessage());
-            response.addProperty("response", "999");
-            response.addProperty("responseDescription", "An error occured while proccessing your request please try again later.");
+            response.addProperty("status", "01");
+            response.addProperty("message", "An error occured while proccessing your request please try again later.");
 
         }
         return response.toString();
@@ -224,13 +254,19 @@ public class FlightLogicController {
                     airlines = airline.airlineList(request, airline_list, credentials);
                     response.add("airlines", airlines);
                     break;
+                case "PostTicketStatus":
+                    response = trip.postTicketStatus(request, post_ticket_status, credentials);
+                    break;
+                case "VoidQuote":
+                    response = trip.postTicketStatus(request, post_ticket_status, credentials);
+                    break;
 
             }
 
         } catch (JsonSyntaxException ex) {
             loggger.error("Exception  |  " + ex.getMessage());
-            response.addProperty("response", "999");
-            response.addProperty("responseDescription", "An error occured while proccessing your request please try again later.");
+            response.addProperty("status", "01");
+            response.addProperty("message", "An error occured while proccessing your request please try again later.");
 
         }
 

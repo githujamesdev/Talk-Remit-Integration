@@ -9,24 +9,19 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.flightlogic.co.ke</groupId>
-    <artifactId>flightlogic</artifactId>
+    <artifactId>hayaan</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>flightlogic</name>
+    <name>hayaan</name>
     <description>This is a middle ware that intergrates to Flight logic API </description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
-        <!--        <dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>-->
-        <!--        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>3.2.4.RELEASE</version>
-        </dependency>   -->
+        <dependency>  
+            <groupId>org.springframework.boot</groupId>  
+            <artifactId>spring-boot-starter-security</artifactId>  
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -82,9 +77,24 @@
             <version>1.18.12</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>2.2</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <!-- very important dependency!!!! -->
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+        </dependency>
     </dependencies>
     <build>
-        <finalName>flightlogic</finalName>  
+        <finalName>hayaan</finalName>  
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

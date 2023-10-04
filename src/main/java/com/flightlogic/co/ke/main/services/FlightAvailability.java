@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.flightlogic.co.ke.main.controllers.FlightLogicController;
 import com.flightlogic.co.ke.main.utilities.Utils;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.IOException;
@@ -24,8 +25,15 @@ import org.springframework.beans.factory.annotation.Value;
  */
 public class FlightAvailability {
 
+    @Value("${flight.airline_list}")
+    String airline_list;
+
     private final Logger loggger = LogManager.getLogger(FlightAvailability.class);
     Utils utility = new Utils();
+
+    AirlineList airline = new AirlineList();
+
+    JsonArray airlines = new JsonArray();
 
     public JsonObject flightAvailabilitySearch(String request, String url, JsonObject credentials) {
         JsonObject responseObject = new JsonObject();
@@ -63,15 +71,14 @@ public class FlightAvailability {
 
             responseObject = utility.flightLogicRequest(flightRequestObject, url);
             loggger.info("FLIGHT AVAILABILITY RESPONSE  |  " + responseObject);
-//{"Errors":{"ErrorCode":"FLSEARCHVAL","ErrorMessage":"departureDate can not be earlier that today."}}
             if (responseObject.has("Errors")) {
-                // responseObject.addProperty("status", "01");
-                //responseObject.addProperty("message", responseObject.get("Errors").getAsJsonObject().get("ErrorMessage").getAsString());
                 loggger.info("IKO NA ERROR");
                 return responseObject;
-                //  responseObject.add("response", responseObject);
 
             } else {
+
+                //get the Airlines 
+                airlines = airline.airlineList(request, "https://travelnext.works/api/aeroVE5/airline_list", credentials);
 
                 JsonObject response = JsonParser.parseString(responseObject.toString()).getAsJsonObject();
                 if (response.has("AirSearchResponse")) {
@@ -101,26 +108,35 @@ public class FlightAvailability {
                                         }
                                     }
                                 }
+                                String airlineCode = fareItinerary.get("ValidatingAirlineCode").getAsString();
+
+                                for (JsonElement airlineElement : airlines) {
+                                    JsonObject airlineRes = airlineElement.getAsJsonObject();
+                                    if (airlineRes.has("AirLineCode") && airlineRes.get("AirLineCode").getAsString().equals(airlineCode)) {
+//                                        JsonObject operatingAirline = fareItinerary.getAsJsonObject("AirItinerary")
+//                                                .getAsJsonObject("OriginDestinationOptions")
+//                                                .getAsJsonArray("OriginDestinationOption")
+//                                                .get(0).getAsJsonObject()
+//                                                .getAsJsonArray("FlightSegment")
+//                                                .get(0).getAsJsonObject()
+//                                                .getAsJsonObject("OperatingAirline");
+
+                                        // Add the "AirlineLogo" information to the "OperatingAirline" object
+                                        fareItinerary.addProperty("AirlineLogo", airlineRes.get("AirLineLogo").getAsString());
+                                    }
+                                }
                             }
                         }
                     }
                 }
 
-//                String modifiedJson = objectMapper.writeValueAsString(rootNode);
-//                System.out.println(modifiedJson);
-//
-//                loggger.info("Iko hapa" + modifiedJson);
-                responseObject = response;//(JsonObject) JsonParser.parseString(modifiedJson);
-
-                //responseObject.addProperty("status", "01");
-                //responseObject.addProperty("message", "Successful");
-                // responseObject.add("response", responseObject);
+                responseObject = response;
             }
         } catch (IOException | ParseException ex) {
             loggger.info("Exception  |  " + ex.getMessage());
-            //responseObject.addProperty("status", "01");
-            //esponseObject.addProperty("message", ex.getMessage());
-            //  responseObject.addProperty("response", "");
+            responseObject.addProperty("status", "01");
+            responseObject.addProperty("message", ex.getMessage());
+            responseObject.addProperty("response", "");
 
         }
 

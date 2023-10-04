@@ -42,31 +42,31 @@ public class ValidateFare {
                 return responseObject;
             } else {
                 JsonObject response = JsonParser.parseString(responseObject.toString()).getAsJsonObject();
-                if (response.has("AirRevalidateResponse")) {
-                    JsonObject airRevalidateResponse = response.getAsJsonObject("AirRevalidateResponse");
-                    if (airRevalidateResponse.has("AirRevalidateResult")) {
-                        JsonObject airRevalidateResult = airRevalidateResponse.getAsJsonObject("AirRevalidateResult");
-                        if (airRevalidateResult.has("FareItineraries")) {
-                            JsonObject fareItineraries = airRevalidateResult.getAsJsonObject("FareItineraries");
-                            if (fareItineraries.has("FareItinerary")) {
-                                JsonObject fareItinerary = fareItineraries.getAsJsonObject("FareItinerary");
-                                if (fareItinerary.has("AirItineraryFareInfo")) {
-                                    JsonObject airItineraryFareInfo = fareItinerary.getAsJsonObject("AirItineraryFareInfo");
-                                    if (airItineraryFareInfo.has("FareBreakdown")) {
-                                        airItineraryFareInfo.remove("FareBreakdown");
-                                    }
-                                    if (airItineraryFareInfo.has("ItinTotalFares")) {
-                                        JsonObject itinTotalFares = airItineraryFareInfo.getAsJsonObject("ItinTotalFares");
-                                        itinTotalFares.remove("BaseFare");
-                                        itinTotalFares.remove("EquivFare");
-                                        itinTotalFares.remove("ServiceTax");
-                                        itinTotalFares.remove("TotalTax");
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+//                if (response.has("AirRevalidateResponse")) {
+//                    JsonObject airRevalidateResponse = response.getAsJsonObject("AirRevalidateResponse");
+//                    if (airRevalidateResponse.has("AirRevalidateResult")) {
+//                        JsonObject airRevalidateResult = airRevalidateResponse.getAsJsonObject("AirRevalidateResult");
+//                        if (airRevalidateResult.has("FareItineraries")) {
+//                            JsonObject fareItineraries = airRevalidateResult.getAsJsonObject("FareItineraries");
+//                            if (fareItineraries.has("FareItinerary")) {
+//                                JsonObject fareItinerary = fareItineraries.getAsJsonObject("FareItinerary");
+//                                if (fareItinerary.has("AirItineraryFareInfo")) {
+//                                    JsonObject airItineraryFareInfo = fareItinerary.getAsJsonObject("AirItineraryFareInfo");
+//                                    if (airItineraryFareInfo.has("FareBreakdown")) {
+//                                        airItineraryFareInfo.remove("FareBreakdown");
+//                                    }
+//                                    if (airItineraryFareInfo.has("ItinTotalFares")) {
+//                                        JsonObject itinTotalFares = airItineraryFareInfo.getAsJsonObject("ItinTotalFares");
+//                                        itinTotalFares.remove("BaseFare");
+//                                        itinTotalFares.remove("EquivFare");
+//                                        itinTotalFares.remove("ServiceTax");
+//                                        itinTotalFares.remove("TotalTax");
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
 
                 responseObject = response;
             }

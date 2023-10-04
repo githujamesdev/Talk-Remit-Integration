@@ -46,7 +46,7 @@ public class OrderTicket {
 
             if (responseObject.has("errors")) {
                 responseObject.addProperty("status", "01");
-                responseObject.addProperty("message", "An error occured while processing your request. Please try again later");
+                responseObject.addProperty("", "An error occured while processing your request. Please try again later");
 
                 return responseObject;
             }

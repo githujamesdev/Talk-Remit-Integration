@@ -1,0 +1,377 @@
+{
+	"info": {
+		"_postman_id": "c2841da6-1fc6-48b1-a7a8-10be2cde6d36",
+		"name": "HAYAAN INTEGRATION",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5852272"
+	},
+	"item": [
+		{
+			"name": "FLIGHTSEARCHAPI-ONEWAY",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Hayaan123!@",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Hayaan",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"operation\":\"FlightAvailability\",\r\n    \"journeyType\": \"OneWay\",\r\n    \"departureDate\": \"2023-09-11\",\r\n    \"airportOriginCode\": \"NBO\",\r\n    \"airportDestinationCode\": \"DXB\",\r\n    \"class\": \"Economy\",\r\n    \"airlineCode\": \"6E\",\r\n    \"adults\": 1,\r\n    \"childs\": 0,\r\n    \"infants\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/hayaan/send-request",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"hayaan",
+						"send-request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FLIGHTSEARCHAPI-RETURN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"operation\":\"FlightAvailability\",\r\n    \"journeyType\": \"Return\",\r\n    \"departureDate\": \"2023-08-04\",\r\n     \"returnDate\": \"2023-08-05\",\r\n    \"airportOriginCode\": \"NBO\",\r\n    \"airportDestinationCode\": \"DXB\",\r\n    \"class\": \"Economy\",\r\n    \"airlineCode\": \"6E\",\r\n    \"adults\": 1,\r\n    \"childs\": 0,\r\n    \"infants\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/hayaan/send-request",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"hayaan",
+						"send-request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VALIDATE FARE API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation\":\"ValidateFare\",\r\n    \"session_id\": \"MTY5MTUyMDAzOF80MzkxMjI=\",\r\n    \"fare_source_code\": \"c1fcbb5e-63e5-4a69-b056-e2e264d24522-RI-OB1-RI-==\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/hayaan/send-request",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"hayaan",
+						"send-request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FARE RULES API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"operation\":\"FareRules\",\r\n    \"session_id\": \"MTY5MTUyMDAzOF80MzkxMjI=\",\r\n    \"fare_source_code\": \"c1fcbb5e-63e5-4a69-b056-e2e264d24522-RI-OB1-RI-MA==\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/hayaan/send-request",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"hayaan",
+						"send-request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BOOK FLIGHT API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation\": \"BookFlight\",\r\n    \"flightBookingInfo\": {\r\n        \"flight_session_id\": \"MTY5NDU5NDc0NV80NzQ3MTY=\",\r\n        \"fare_source_code\": \"4d5759f4-4284-4bf9-aec5-0771f0d48b9c-RI-OB1-RI-MA==\",\r\n        \"IsPassportMandatory\": \"true\",\r\n        \"fareType\": \"Public\",\r\n        \"areaCode\": \"080\",\r\n        \"countryCode\": \"254\"\r\n    },\r\n    \"paxInfo\": {\r\n        \"clientRef\": \"PNRK001\",\r\n        \"postCode\": \"99999\",\r\n        \"customerEmail\": \"test@gmail.com\",\r\n        \"customerPhone\": \"9847012345\",\r\n        \"bookingNote\": \"\",\r\n        \"paxDetails\": {\r\n            \"adult\": [\r\n                {\r\n                    \"title\": \"Mr\",\r\n                    \"firstName\": \"John\",\r\n                    \"lastName\": \"Doe\",\r\n                    \"dob\": \"1991-12-11\",\r\n                    \"nationality\": \"IN\",\r\n                    \"passportNo\": \"56278288\",\r\n                    \"passportIssueCountry\": \"IN\",\r\n                    \"passportExpiryDate\": \"2024-12-11\"\r\n                }\r\n            ],\r\n            \"child\": [],\r\n            \"infant\": [\r\n                {\r\n                    \"title\": \"Miss\",\r\n                    \"firstName\": \"John\",\r\n                    \"lastName\": \"Doe\",\r\n                    \"dob\": \"1991-12-11\",\r\n                    \"nationality\": \"IN\",\r\n                    \"passportNo\": \"56278388\",\r\n                    \"passportIssueCountry\": \"IN\",\r\n                    \"passportExpiryDate\": \"2024-12-11\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/hayaan/send-request",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"hayaan",
+						"send-request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ORDER TICKET API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation\": \"OrderTicket\",\r\n    \"UniqueID\": \"TR31072022\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/hayaan/send-request",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"hayaan",
+						"send-request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AIRPORT_LIST API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation\":\"AirportList\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/hayaan/send-request",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"hayaan",
+						"send-request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TRIP DETAILS API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation\": \"TripDetails\",\r\n    \"UniqueID\": \"TR31072022\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/hayaan/send-request",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"hayaan",
+						"send-request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CANCEL TRIP API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation\": \"CancelTrip\",\r\n    \"UniqueID\": \"TR31072022\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/hayaan/send-request",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"hayaan",
+						"send-request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BOOKING NOTE API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation\": \"BookingNote\",\r\n    \"UniqueID\": \"TR31072022\",\r\n    \"notes\": \"INPUT THE NOTES HERE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/hayaan/send-request",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"hayaan",
+						"send-request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AIRLINE LIST API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation\": \"AirlineList\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/hayaan/send-request",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"hayaan",
+						"send-request"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

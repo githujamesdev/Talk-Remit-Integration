@@ -170,10 +170,10 @@ public class Utils {
                 "*/*").post(Entity.entity(ackMessages.toString(), "application/json"));
         String res = response1.readEntity(String.class);
 
-        log.info("Flight Logic Responses" + res);
+        //log.info("Flight Logic Responses" + res);
         JsonObject FlightAvailabilityResponse = JsonParser.parseString(res).getAsJsonObject();
 
-        log.info("Flight Responses" + FlightAvailabilityResponse);
+        //log.info("Flight Responses" + FlightAvailabilityResponse);
         return FlightAvailabilityResponse;
     }
 
@@ -184,10 +184,10 @@ public class Utils {
                 "*/*").post(Entity.entity(ackMessages.toString(), "application/json"));
         String res = response1.readEntity(String.class);
 
-        log.info("Airport List Responses" + res);
+       // log.info("Airport List Responses" + res);
         JsonArray FlightAvailabilityResponse = JsonParser.parseString(res).getAsJsonArray();
 
-        log.info("Airport List Responses" + FlightAvailabilityResponse);
+      //  log.info("Airport List Responses" + FlightAvailabilityResponse);
         return FlightAvailabilityResponse;
     }
 

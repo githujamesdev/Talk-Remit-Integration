@@ -53,7 +53,9 @@ public class TripDetails {
 
         } catch (IOException | ParseException ex) {
             loggger.info("Exception  |  " + ex.getMessage());
-
+            responseObject.addProperty("status", "01");
+            responseObject.addProperty("message", ex.getMessage());
+            responseObject.addProperty("response", "");
         }
 
         return responseObject;
@@ -91,7 +93,9 @@ public class TripDetails {
 
         } catch (IOException | ParseException ex) {
             loggger.info("Exception  |  " + ex.getMessage());
-
+            responseObject.addProperty("status", "01");
+            responseObject.addProperty("message", ex.getMessage());
+            responseObject.addProperty("response", "");
         }
 
         return responseObject;
@@ -130,6 +134,50 @@ public class TripDetails {
 
         } catch (IOException | ParseException ex) {
             loggger.info("Exception  |  " + ex.getMessage());
+            responseObject.addProperty("status", "01");
+            responseObject.addProperty("message", ex.getMessage());
+            responseObject.addProperty("response", "");
+        }
+
+        return responseObject;
+
+    }
+
+    public JsonObject postTicketStatus(String request, String url, JsonObject credentials) {
+        JsonObject responseObject = new JsonObject();
+
+        try {
+
+            //JsonObject incomingRequest = new JsonObject(request);
+            JsonObject requestObject = JsonParser.parseString(request).getAsJsonObject();
+            //  System.out.print("JSON REQUEST" + request);
+
+            JsonObject flightRequestObject = new JsonObject();
+            //form request here 
+
+            flightRequestObject.addProperty("user_id", credentials.get("user_id").getAsString());
+            flightRequestObject.addProperty("user_password", credentials.get("user_password").getAsString());
+            flightRequestObject.addProperty("access", credentials.get("access").getAsString());
+            flightRequestObject.addProperty("ip_address", credentials.get("ip_address").getAsString());
+            flightRequestObject.addProperty("UniqueID", requestObject.get("UniqueID").getAsString());
+            flightRequestObject.addProperty("ptrUniqueID", requestObject.get("ptrUniqueID").getAsString());
+
+            loggger.info("POST TICKET STATUS REQUEST |  URL " + url + "  REQ " + flightRequestObject);
+            responseObject = utility.flightLogicRequest(flightRequestObject, url);
+            loggger.info("POST TICKET STATUS   |  " + responseObject);
+
+            if (responseObject.has("errors")) {
+                responseObject.addProperty("status", "01");
+                responseObject.addProperty("message", "An error occured while processing your request. Please try again later");
+
+                return responseObject;
+            }
+
+        } catch (IOException | ParseException ex) {
+            loggger.info("Exception  |  " + ex.getMessage());
+            responseObject.addProperty("status", "01");
+            responseObject.addProperty("message", ex.getMessage());
+            responseObject.addProperty("response", "");
 
         }
 
@@ -137,4 +185,45 @@ public class TripDetails {
 
     }
 
+    
+    
+    public JsonObject voidQuote(String request, String url, JsonObject credentials) {
+        JsonObject responseObject = new JsonObject();
+
+        try {
+
+            //JsonObject incomingRequest = new JsonObject(request);
+            JsonObject requestObject = JsonParser.parseString(request).getAsJsonObject();
+            //  System.out.print("JSON REQUEST" + request);
+
+            JsonObject flightRequestObject = new JsonObject();
+            //form request here 
+
+            requestObject.addProperty("user_id", credentials.get("user_id").getAsString());
+            requestObject.addProperty("user_password", credentials.get("user_password").getAsString());
+            requestObject.addProperty("access", credentials.get("access").getAsString());
+            requestObject.addProperty("ip_address", credentials.get("ip_address").getAsString());
+           
+            loggger.info("VOID QUOTE REQUEST |  URL " + url + "  REQ " + flightRequestObject);
+            responseObject = utility.flightLogicRequest(flightRequestObject, url);
+            loggger.info("VOID QUOTE STATUS   |  " + responseObject);
+
+            if (responseObject.has("errors")) {
+                responseObject.addProperty("status", "01");
+                responseObject.addProperty("message", "An error occured while processing your request. Please try again later");
+
+                return responseObject;
+            }
+
+        } catch (IOException | ParseException ex) {
+            loggger.info("Exception  |  " + ex.getMessage());
+            responseObject.addProperty("status", "01");
+            responseObject.addProperty("message", ex.getMessage());
+            responseObject.addProperty("response", "");
+
+        }
+
+        return responseObject;
+
+    }
 }
