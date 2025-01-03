@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "42231f4d-f759-4403-a2c6-dbf6f45d119f",
+		"name": "REMIT XPRESS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5852272"
+	},
+	"item": [
+		{
+			"name": "REMIT VALIDATE PARTNER",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUYWxrUmVtaXQiLCJpYXQiOjE3MTYzNjE0NjIsImV4cCI6MTcxNjQ0Nzg2Mn0.YNW7aqYgCCMqwEVTmssG02x7FPXlXFk1JvivZEvxIvO8P0GSzaIqnSFSjrrez2TA4yUigyN5xGp8IdHASaZx8w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation\": \"validatePartner\",\r\n    \"username\": \"TalkRemit\",\r\n    \"password\": \"F6E9AD4D-4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/remitxpress/process",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"remitxpress",
+						"process"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET COUNTRIES",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUYWxrUmVtaXQiLCJpYXQiOjE3MTYzNjE0NjIsImV4cCI6MTcxNjQ0Nzg2Mn0.YNW7aqYgCCMqwEVTmssG02x7FPXlXFk1JvivZEvxIvO8P0GSzaIqnSFSjrrez2TA4yUigyN5xGp8IdHASaZx8w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/remitxpress/getCountries",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"remitxpress",
+						"getCountries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET CURRENCIES",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUYWxrUmVtaXQiLCJpYXQiOjE3MTYzNjE0NjIsImV4cCI6MTcxNjQ0Nzg2Mn0.YNW7aqYgCCMqwEVTmssG02x7FPXlXFk1JvivZEvxIvO8P0GSzaIqnSFSjrrez2TA4yUigyN5xGp8IdHASaZx8w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://196.188.172.182:8080/remitxpress/getCurrencies",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"remitxpress",
+						"getCurrencies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET DELIVERY METHODS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUYWxrUmVtaXQiLCJpYXQiOjE3MTYzNjE0NjIsImV4cCI6MTcxNjQ0Nzg2Mn0.YNW7aqYgCCMqwEVTmssG02x7FPXlXFk1JvivZEvxIvO8P0GSzaIqnSFSjrrez2TA4yUigyN5xGp8IdHASaZx8w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CountryId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/remitxpress/getDeliveryMethod",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"remitxpress",
+						"getDeliveryMethod"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET DELIVERY TYPES",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUYWxrUmVtaXQiLCJpYXQiOjE3MTYzNjE0NjIsImV4cCI6MTcxNjQ0Nzg2Mn0.YNW7aqYgCCMqwEVTmssG02x7FPXlXFk1JvivZEvxIvO8P0GSzaIqnSFSjrrez2TA4yUigyN5xGp8IdHASaZx8w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CountryId\": 1,\r\n    \"deliveryMethodId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/remitxpress/getDeliveryType",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"remitxpress",
+						"getDeliveryType"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET EXCHANGE RATE",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUYWxrUmVtaXQiLCJpYXQiOjE3MTYzNjE0NjIsImV4cCI6MTcxNjQ0Nzg2Mn0.YNW7aqYgCCMqwEVTmssG02x7FPXlXFk1JvivZEvxIvO8P0GSzaIqnSFSjrrez2TA4yUigyN5xGp8IdHASaZx8w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sourceCurrency\": 1,\r\n    \"destinationCurrency\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/remitxpress/getExchangeRate",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"remitxpress",
+						"getExchangeRate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ACCOUNT BALANCE",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUYWxrUmVtaXQiLCJpYXQiOjE3MTYzNjE0NjIsImV4cCI6MTcxNjQ0Nzg2Mn0.YNW7aqYgCCMqwEVTmssG02x7FPXlXFk1JvivZEvxIvO8P0GSzaIqnSFSjrrez2TA4yUigyN5xGp8IdHASaZx8w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountNumber\": \"2396225\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://196.188.172.182:8080/remitxpress/getAccountBalance",
+					"protocol": "http",
+					"host": [
+						"196",
+						"188",
+						"172",
+						"182"
+					],
+					"port": "8080",
+					"path": [
+						"remitxpress",
+						"getAccountBalance"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

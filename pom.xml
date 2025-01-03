@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.flightlogic.co.ke</groupId>
-    <artifactId>hayaan</artifactId>
+    <artifactId>remitxpress</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>hayaan</name>
-    <description>This is a middle ware that intergrates to Flight logic API </description>
+    <name>remitxpress</name>
+    <description>This is a middle ware that exposes APIs for Remit Express </description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -92,9 +92,15 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <build>
-        <finalName>hayaan</finalName>  
+        <finalName>remitxpress</finalName>  
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
